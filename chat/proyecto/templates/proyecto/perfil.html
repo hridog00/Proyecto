@@ -1,0 +1,48 @@
+{% extends 'proyecto/base.html' %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+{% block title %}
+Bienvenido
+{% endblock %}
+{% block content %}
+
+<div class="container" >
+   <a href="message" class="card-link btn btn-default">Esctibir un nuevo post secreto</a>
+{% if latest_question_list %}
+
+
+
+    {% for post in latest_question_list %}
+        <div class="card w-75">
+  <div class="card-body">
+    <h4 class="card-title">{{ post.titulo }}</h4>
+    <h6 class="card-subtitle mb-2 text-muted">{{ post.date }}</h6>
+    <p class="card-text">    {{ post.texto }}</p>
+    <a href="descifrar/{{post.id}}" class="card-link btn btn-default">Descifrar</a>
+
+  </div>
+</div>
+
+
+
+
+    {% endfor %}
+
+
+
+</div>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+
+
+
+{% endblock %}

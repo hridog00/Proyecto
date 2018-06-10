@@ -1,0 +1,55 @@
+{% extends 'proyecto/base.html' %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+ <h1>Mensajes</h1>
+{% endblock %}
+
+
+#Add
+{% block content %}
+
+<div class="card">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3" id="form_container">
+            <form role="form" method="post" id="reused_form" action="sendMessage" >   {% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <label for="name">
+                            Titulo:</label>
+                        <input type="text" class="form-control" id="name" name="titulo" required>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="message">
+                            Post:</label>
+                        <textarea class="form-control" type="textarea" name="message" id="message" maxlength="6000" rows="7"></textarea>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <button type="submit" class="btn btn-lg btn-default pull-right" >Postea →</button>
+                    </div>
+                </div>
+
+            </form>
+            <div id="success_message" style="width:100%; height:100%; display:none; ">
+                <h3>Tu mensaje ha sido encriptado y posteado correctamente!</h3>
+            </div>
+            <div id="error_message"
+                    style="width:100%; height:100%; display:none; ">
+                        <h3>Error</h3>
+                        Sorry there was an error sending your form.
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

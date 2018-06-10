@@ -1,0 +1,30 @@
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+ <div class="container" style="align: center">
+
+      <form class="form-signin" method="post" id="login-form" action="{% url 'inicioSesion' %}">{% csrf_token %}
+        <h2 class="form-signin-heading"> </h2>
+        <label for="id_username" class="sr-only"> </label>
+        <input type="text" name="username" id="id_username" class="form-control" placeholder="User Name" required autofocus>
+        <label for="id_password" class="sr-only">Password</label>
+        <input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+        <a href="signup" class="card-link btn btn-default">Registrarse</a>
+
+
+    </div> <!-- /container -->
+
