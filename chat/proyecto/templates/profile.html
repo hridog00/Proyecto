@@ -5,25 +5,31 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
+
+{% block title %}
+<div class="card">
+    <h3 align="center" style="font-style: italic; font-family: Arial, Helvetica, sans-serif ">DIARIO SECRETO</h3>
+</div>
+{% endblock %}
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
 
- <div class="container" style="align: center">
+ <div class="container" style="align: center; width:50%">
 
       <form class="form-signin" method="post" id="login-form" action="{% url 'inicioSesion' %}">{% csrf_token %}
         <h2 class="form-signin-heading"> </h2>
         <label for="id_username" class="sr-only"> </label>
-        <input type="text" name="username" id="id_username" class="form-control" placeholder="User Name" required autofocus>
+        <input type="text" name="username" id="id_username" class="form-control" style="margin: 10px" placeholder="User Name" required autofocus>
         <label for="id_password" class="sr-only">Password</label>
-        <input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
+        <input type="password" name="password" id="id_password" class="form-control" style="margin: 10px" placeholder="Password" required>
+        <div class="checkbox" style="margin: 10px">
           <label>
-            <input type="checkbox" value="remember-me"> Remember me
+            <input type="checkbox" value="remember-me" style=""> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin: 10px">Sign in</button>
       </form>
-        <a href="signup" class="card-link btn btn-default">Registrarse</a>
+        <a href="signup" class="card-link btn btn-default" style="margin: 10px; background-color: #D3D3D3">Registrarse</a>
 
 
     </div> <!-- /container -->
