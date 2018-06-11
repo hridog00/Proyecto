@@ -9,31 +9,42 @@
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
 {% block title %}
-Bienvenido
+    <h3 align="center" style="font-style: italic; font-family: Times New Roman, Times, serif;  ">DIARIO SECRETO</h3>
+
 {% endblock %}
 {% block content %}
 
 <div class="container" >
-   <a href="message" style="margin:10px" class="card-link btn btn-default">Escribir un nuevo post secreto</a>
-       <a href="/proyecto" style="margin:10px" class="card-link btn btn-default">Salir</a>
-
-
+   <a href="message" class="card-link btn btn-default" style="margin: 10px; Courier New, Courier, monospace; background-color: #D3D3D3; border: 2px solid #000000;  ">Nuevo Post</a>
+        <a href="/proyecto" style="margin: 10px; Courier New, Courier, monospace; background-color: red; color: black; border: 2px solid #000000;position:absolute;transition: .5s ease;left: 75%; " class="card-link btn btn-default">Salir</a>
 {% if latest_question_list %}
+
+
+
     {% for post in latest_question_list %}
         <div class="card w-75">
   <div class="card-body">
-    <h4 class="card-title" style="margin:10px">{{ post.titulo }}</h4>
-    <h6 class="card-subtitle mb-2 text-muted" style="margin:10px">{{ post.date }}</h6>
-    <p class="card-text" style="margin:10px">    {{ post.texto }}</p>
-    <a href="descifrar/{{post.id}}" style="margin:10px" class="card-link btn btn-default">Descifrar</a>
-
+    <h4 class="card-title">{{ post.titulo }}</h4>
+    <h6 class="card-subtitle mb-2 text-muted">{{ post.date }}</h6>
+    <p class="card-text">    {{ post.texto }}</p>
+    <a href="descifrar/{{post.id}}" class="card-link btn btn-default">Descifrar</a>
 
   </div>
-        </hr>
 </div>
+
+
+
+
     {% endfor %}
+
+
+
 </div>
 {% else %}
-    <p>TODAVIA NO HAS POSTEADO NADA EN TU DIARIO!</p>
+ <p style="font-style: italic; font-family: Times New Roman, Times, serif; color: RED">TODAVIA NO HAS POSTEADO NADA EN TU DIARIO! </p>
 {% endif %}
+
+
+
+
 {% endblock %}

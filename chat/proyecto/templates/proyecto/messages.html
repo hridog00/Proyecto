@@ -3,8 +3,7 @@
 {% load bootstrap3 %}
 
 {% block title %}
- <h1>Mensajes</h1>
-{% endblock %}
+<h2 align="center" style="font-style: italic; font-family: Times New Roman, Times, serif;  ">Mensajes</h2>{% endblock %}
 
 
 #Add
@@ -16,7 +15,7 @@
             <form role="form" method="post" id="reused_form" action="sendMessage" >   {% csrf_token %}
                 <div class="row">
                     <div class="col-sm-6 form-group">
-                        <label for="name">
+                        <label for="name" style="font-style: normal; font-family: Times New Roman, Times, serif">
                             Titulo:</label>
                         <input type="text" class="form-control" id="name" name="titulo" required>
                     </div>
@@ -25,7 +24,7 @@
 
                 <div class="row">
                     <div class="col-sm-12 form-group">
-                        <label for="message">
+                        <label for="message" style="font-style: normal; font-family: Times New Roman, Times, serif">
                             Post:</label>
                         <textarea class="form-control" type="textarea" name="message" id="message" maxlength="6000" rows="7"></textarea>
                     </div>
@@ -35,13 +34,13 @@
 
                 <div class="row">
                     <div class="col-sm-12 form-group">
-                        <button type="submit" class="btn btn-lg btn-default pull-right" >Postea →</button>
+                        <button type="submit" class="btn btn-lg btn-default pull-right"  style="margin: 10px; Courier New, Courier, monospace; background-color: white; color: black; border: 2px solid #FFA500; ">Postea →</button>
                     </div>
                 </div>
 
             </form>
             <div id="success_message" style="width:100%; height:100%; display:none; ">
-                <h3>Tu mensaje ha sido encriptado y posteado correctamente!</h3>
+                <h3 style="Courier New, Courier, monospace">Tu mensaje ha sido encriptado y posteado correctamente!</h3>
             </div>
             <div id="error_message"
                     style="width:100%; height:100%; display:none; ">
