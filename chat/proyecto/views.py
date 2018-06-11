@@ -54,6 +54,16 @@ def inicioSesion(request):
     else:
         return render(request, 'profile.html')
 
+def perfil(request):
+
+    global USUARIO
+    user = USUARIO
+    latest_question_list = Post.objects.filter(usuario=user)
+    template = loader.get_template('proyecto/perfil.html')
+    context = {
+        'latest_question_list': latest_question_list,
+    }
+    return HttpResponse(template.render(context, request))
 
 def message(request):
     return render(request, 'proyecto/messages.html')
@@ -91,14 +101,13 @@ def descifrar(request, id):
     global USUARIO
     user = USUARIO
     text = rsa.desencriptar(post.texto,user.clavepublica_d ,user.clavepublica_e, user.phi )
-    string = "El texto desencriptado es: \n" + text
-    messages.info(request, string, )
-    latest_question_list = Post.objects.filter(usuario=USUARIO)
-    template = loader.get_template('proyecto/perfil.html')
-    context = {
-        'latest_question_list': latest_question_list,
-    }
-    return HttpResponse(template.render(context, request))
+    post.texto = text
+    Posts = []
+    Posts.append(post)
+    template = loader.get_template('proyecto/mensaje_desencriptado.html')
+    context_dict = {'posts': Posts}
+
+    return HttpResponse(template.render(context_dict, request))
 
 
 def registro(request):

@@ -96,7 +96,11 @@ def calcularExpresionBase(N, M, n):
     resultado = []
     D = M
     coc = 0
-    while D > N:
+    if(D<N):
+        resultado.append(0)
+        resultado.append(D % N)
+        return resultado
+    while D >= N:
         cociente = D // N
         resto = D % N
         resultado.append(resto)
@@ -170,21 +174,24 @@ def getCCifrar(bloque, k, N):
     return c
 
 def devolerLetras(alf, m):
+    print ('alf',len(alf))
     msg = ""
     for i in m:
+        print ('i',i)
         msg = msg + alf[i]
     return msg
 
 
 def encriptar(texto, n, e):
-    alf = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ0123456789 ,.:;-¿?()¿!"
-   # alf = "ABCDEFGHIJKLMNNOPQRSTUVWXYZ"
+    alf = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ0123456789 ,.:;-¿?()"
+
+    # alf = "ABCDEFGHIJKLMNNOPQRSTUVWXYZ"
 
 
     #n=731
     #e=269
     N = len(alf)
-    print (len(texto))
+    print (len(texto), N)
     k = getK(n, N)
     print ('k',k)
     while ((len(texto) % k) != 0):
@@ -192,7 +199,7 @@ def encriptar(texto, n, e):
         texto = texto + " "
 
     print('long',len(texto))
-
+    print(texto)
     M = pasarNumerico(texto, alf)
     C = getBloquesCifrar(k, M)
     print (C)
@@ -213,57 +220,65 @@ def encriptar(texto, n, e):
     return res
 
 def desencriptar(msg,n,e,phi):
-    alf = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ0123456789 ,.:;-¿?()¡!"
+    alf = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ0123456789 ,.:;-¿?()"
     #alf = "ABCDEFGHIJKLMNNOPQRSTUVWXYZ"
 
     N = len(alf)
     M = pasarNumerico(msg, alf)
     k = getK(n, N)
     d = getClavePrivada(e, phi)
+    print ('len y k ',len(msg),  k)
     C = getBloques(k, M)
+
     res = ""
     for i in C:
+        print('i',i,'k',k, 'N',N)
+
         c = getC(i, k, N)
-     #   print ('c:', c)
+        print ('c:', c, 'd', d, 'n',n)
         m = algoritmoPotenciacionMoular(c, d, n)
-      #  print ('m:', m)
+        print ('m:', m)
         numeros = calcularExpresionBase(N, m, n)
-     #   print ('numeros:')
-      #  print (numeros)
+        print ('numeros:')
+        print (numeros)
         msg = devolerLetras(alf, numeros)
-     #   print (msg)
+        print (msg)
         res = res + msg
 
+    print('longitud final:',len(res))
     return res
 
 def primosEntreSi(phi):
     result = []
-    print('entro aqui')
 
     for i in range(1,phi-1):
-        print('i',i)
+
         if mcd(i,phi) == 1:
             result.append(i)
 
-    print('SALGO AQUI')
+
+    return result
+
 def mcd(a, b):
-    print('entro')
     resto = 0
     while(b > 0):
         resto = b
         b = a % b
         a = resto
-    print('SALGO')
     return a
+
+
+
 
 def generarClavePublica():
     p = sy.randprime(50, 500)
     q= sy.randprime(50,500)
+
     n = p*q
-    phi = (p-1)*(q-1)
+    phi = ((p-1)*(q-1))
     print (phi)
     e = random.choice(primosEntreSi(phi))
-
+    print ('p:', p, 'q:', q, 'n:', n, 'phi:', phi, 'e:', e)
     print('E', e, 'N', n)
     clave = []
     clave.append(n)
@@ -271,7 +286,3 @@ def generarClavePublica():
     clave.append(phi)
 
     return clave
-
-
-
-

@@ -14,17 +14,21 @@ Bienvenido
 {% block content %}
 
 <div class="container" >
-   <a href="message" class="card-link btn btn-default">Escribir un nuevo post secreto</a>
+   <a href="message" style="margin:10px" class="card-link btn btn-default">Escribir un nuevo post secreto</a>
+       <a href="/proyecto" style="margin:10px" class="card-link btn btn-default">Salir</a>
+
+
 {% if latest_question_list %}
     {% for post in latest_question_list %}
         <div class="card w-75">
   <div class="card-body">
-    <h4 class="card-title">{{ post.titulo }}</h4>
-    <h6 class="card-subtitle mb-2 text-muted">{{ post.date }}</h6>
-    <p class="card-text">    {{ post.texto }}</p>
-    <a href="descifrar/{{post.id}}" class="card-link btn btn-default">Descifrar</a>
+    <h4 class="card-title" style="margin:10px">{{ post.titulo }}</h4>
+    <h6 class="card-subtitle mb-2 text-muted" style="margin:10px">{{ post.date }}</h6>
+    <p class="card-text" style="margin:10px">    {{ post.texto }}</p>
+    <a href="descifrar/{{post.id}}" style="margin:10px" class="card-link btn btn-default">Descifrar</a>
 
   </div>
+        </hr>
 </div>
     {% endfor %}
 </div>
