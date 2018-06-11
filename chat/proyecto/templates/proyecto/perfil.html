@@ -14,11 +14,8 @@ Bienvenido
 {% block content %}
 
 <div class="container" >
-   <a href="message" class="card-link btn btn-default">Esctibir un nuevo post secreto</a>
+   <a href="message" class="card-link btn btn-default">Escribir un nuevo post secreto</a>
 {% if latest_question_list %}
-
-
-
     {% for post in latest_question_list %}
         <div class="card w-75">
   <div class="card-body">
@@ -29,20 +26,9 @@ Bienvenido
 
   </div>
 </div>
-
-
-
-
     {% endfor %}
-
-
-
 </div>
 {% else %}
-    <p>No polls are available.</p>
+    <p>TODAVIA NO HAS POSTEADO NADA EN TU DIARIO!</p>
 {% endif %}
-
-
-
-
 {% endblock %}

@@ -11,11 +11,6 @@
     <div class="container">
         <h1>{% block title %}(no title){% endblock %}</h1>
 
-        <p>
-
-            <a href="{% url 'form_default' %}">form</a>
-        </p>
-
         {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
 
         {% block content %}(no content){% endblock %}
