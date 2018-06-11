@@ -18,6 +18,6 @@ urlpatterns = [
     url(r'^form$', views.DefaultFormView.as_view(), name='form_default'),
     url(r'^message', views.message, name='escribe_mensajet'),
     path('descifrar/<int:id>/', views.descifrar ,name="descifrar"),
-
+#    path('descifrar', views.descifrar ,name="descifrar"),
 
 ]

@@ -7,7 +7,7 @@ from django import contrib
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core.files.storage import default_storage
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -95,11 +95,13 @@ def enviarMensaje(request):
 def signup(request):
     return render(request, 'proyecto/signup.html')
 
-
 def descifrar(request, id):
-    post = Post.objects.get(id=id)
+
     global USUARIO
     user = USUARIO
+
+    post = Post.objects.get(id=id)
+
     text = rsa.desencriptar(post.texto,user.clavepublica_d ,user.clavepublica_e, user.phi )
     post.texto = text
     Posts = []
@@ -109,6 +111,27 @@ def descifrar(request, id):
 
     return HttpResponse(template.render(context_dict, request))
 
+
+# def descifrar(request):
+# #def descifrar(request, id):
+#     n = request.POST['n']
+#     e = request.POST['e']
+#     id = request.POST['id']
+#     global USUARIO
+#     user = USUARIO
+#     if(n==user.clavepublica_d & e==user.clavepublica_e):
+#         post = Post.objects.get(id=id)
+#
+#         text = rsa.desencriptar(post.texto,user.clavepublica_d ,user.clavepublica_e, user.phi )
+#         post.texto = text
+#         Posts = []
+#         Posts.append(post)
+#         template = loader.get_template('proyecto/mensaje_desencriptado.html')
+#         context_dict = {'posts': Posts}
+#
+#         return HttpResponse(template.render(context_dict, request))
+#     else:
+#         HttpResponseRedirect("/proyecto/perfil")
 
 def registro(request):
     username = request.POST['new_username']
